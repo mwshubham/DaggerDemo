@@ -1,19 +1,30 @@
 package com.example.daggerdemo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_auth.*
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class AuthActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var string: String
+
+
+    companion object {
+        val TAG: String = AuthActivity::class.java.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_auth)
         setSupportActionBar(toolbar)
 
+        Log.d(TAG, "onCreate() >>> string: $string")
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()

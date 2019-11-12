@@ -14,7 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule
  *
  * Reference: {@link https://www.youtube.com/watch?v=31vswk6r8FA&list=PLgCYzUzKIBE8AOAspC3DHoBNZIBHbIOsC&index=6}
  */
-@Component(modules = [AndroidSupportInjectionModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, ActivityBuildersModule::class])
 interface AppComponent : AndroidInjector<BaseApplication> {
 
     @Component.Builder
