@@ -10,13 +10,4 @@ abstract class ActivityBuildersModule {
     @ContributesAndroidInjector
     internal abstract fun contributesAuthActivity(): AuthActivity
 
-//    @Module
-//    companion object {
-//        @JvmStatic
-//        @Provides
-//        internal fun returnStringObject(): String {
-//            return "ActivityBuildersModule"
-//        }
-//    }
-
 }

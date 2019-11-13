@@ -1,19 +1,18 @@
 package com.example.daggerdemo
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
+import com.bumptech.glide.RequestManager
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_auth.*
 import javax.inject.Inject
 
 class AuthActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var string: String
+    lateinit var requestManager: RequestManager
 
+    @Inject
+    lateinit var logo: Drawable
 
     companion object {
         val TAG: String = AuthActivity::class.java.simpleName
@@ -22,28 +21,13 @@ class AuthActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        setSupportActionBar(toolbar)
-
-        Log.d(TAG, "onCreate() >>> string: $string")
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        setLogo()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+    private fun setLogo() {
+        requestManager
+            .load(logo)
+            .into(findViewById(R.id.login_logo))
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }
