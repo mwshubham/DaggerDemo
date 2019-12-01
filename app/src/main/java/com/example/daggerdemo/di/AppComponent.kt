@@ -6,7 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-
+import javax.inject.Singleton
 
 /**
  * [AppComponent] as a Server
@@ -14,7 +14,14 @@ import dagger.android.support.AndroidSupportInjectionModule
  *
  * Reference: {@link https://www.youtube.com/watch?v=31vswk6r8FA&list=PLgCYzUzKIBE8AOAspC3DHoBNZIBHbIOsC&index=6}
  */
-@Component(modules = [AndroidSupportInjectionModule::class, ActivityBuildersModule::class, AppModule::class])
+@Singleton
+@Component(
+    modules = [
+        AndroidSupportInjectionModule::class,
+        ActivityBuildersModule::class,
+        AppModule::class
+    ]
+)
 interface AppComponent : AndroidInjector<BaseApplication> {
 
     @Component.Builder
@@ -22,7 +29,6 @@ interface AppComponent : AndroidInjector<BaseApplication> {
 
         @BindsInstance
         fun application(application: Application): Builder
-
 
         fun build(): AppComponent
     }
